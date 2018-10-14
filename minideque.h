@@ -53,7 +53,7 @@ public:
   // symmetric logic for converse case: ABCDEFG | ===> ABC | DEF (G discarded) after pop_back
 
   void pop_front(){
-    if (fronthalfsize() == 0) {
+    if (fronthalfsize() == 0) { //check if the front half id empty
 			backhalf_.erase(backhalf_.begin()); //erase the front of backhalf
 			split = backhalfsize() / 2;
 			for (int i = 0; i < split; i++) {
@@ -61,9 +61,9 @@ public:
 				backhalf_.erase(backhalf_.begin()); //delete the elements of backhalf that were copied
 			}
 		}
-		else {
-			fronthalf_.pop_back();
-		}
+	else { //if its not empty then pop_back
+		fronthalf_.pop_back();
+	}
   }
 
   void pop_back(){
@@ -75,10 +75,10 @@ public:
 				backhalf_.push_back(fronthalf_.back());
 				fronthalf_.erase(fronthalf_.back());
 			}
-		}
-		else {
-			backhalf_.pop_back();
-		}
+	}
+	else {
+		backhalf_.pop_back();
+	}
   }
 
   void push_front(const T& value){
