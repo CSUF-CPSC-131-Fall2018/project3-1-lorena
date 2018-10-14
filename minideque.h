@@ -38,35 +38,27 @@ public:
   }
 
   bool empty()  const{
-    if (fronthalf_.empty() == true && backhalf_.empty() == true) //if both front and back half are empty, return true
-			return true;
-		else { //if theres any elements in deque, return false
-			return false;
-		}
+    return (fronthalf_.empty() == true && backhalf_.empty() == true);
   }
 
-  int split; //i'm using this to know # of elements in each vector after split
-
-  // balance queue across both vectors if pop_front/back is requested on an empty vector
-  // e.g., minideque has this:                  | ABCDEFG
-  // after pop_front                        BCD | EFG (A discarded)
-  // symmetric logic for converse case: ABCDEFG | ===> ABC | DEF (G discarded) after pop_back
 
   void pop_front(){
-    if (fronthalfsize() == 0) { //check if the front half id empty
+    int split; //i'm using this to know # of elements in each vector after split
+    if (fronthalfsize() == 0) {
 			backhalf_.erase(backhalf_.begin()); //erase the front of backhalf
 			split = backhalfsize() / 2;
 			for (int i = 0; i < split; i++) {
-				fronthalf_.push_back(backhalf_.front()); //assign the back elements of backhalf to fronthalf
+				fronthalf_.insert(fronthalf_.begin(), backhalf_.front() ); //assign the back elements of backhalf to fronthalf
 				backhalf_.erase(backhalf_.begin()); //delete the elements of backhalf that were copied
 			}
 		}
-	else { //if its not empty then pop_back
-		fronthalf_.pop_back();
-	}
+		else {
+			fronthalf_.pop_back();
+		}
   }
 
   void pop_back(){
+    int split; //i'm using this to know # of elements in each vector after split
     if (backhalfsize() == 0) {
 			fronthalf_.pop_back();
 			split = fronthalfsize() / 2;
@@ -75,10 +67,10 @@ public:
 				backhalf_.push_back(fronthalf_.back());
 				fronthalf_.erase(fronthalf_.back());
 			}
-	}
-	else {
-		backhalf_.pop_back();
-	}
+		}
+		else {
+			backhalf_.pop_back();
+		}
   }
 
   void push_front(const T& value){
@@ -127,7 +119,7 @@ public:
     }
   }
 
-    const T& operator[](size_t index) const{
+  const T& operator[](size_t index) const{
     if( index < fronthalfsize() ){
       return fronthalf_[index];
     }
@@ -143,7 +135,6 @@ public:
       return backhalf_[index];
     }
   }
-          //TODO
 
   void clear(){}; //TODO
 
