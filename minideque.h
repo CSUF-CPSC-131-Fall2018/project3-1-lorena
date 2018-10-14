@@ -127,8 +127,24 @@ public:
     }
   }
 
-  const T& operator[](size_t index) const{};
-  T& operator[](size_t index){};           //TODO
+  const T& operator[](size_t index) const{
+	  /* SEGMENTATION FAULT
+	  if(index < backhalfsize() )
+      return fronthalf_[index];
+    else {
+      return backhalf_[index];
+      */
+    }
+  };
+  T& operator[](size_t index){
+  /* SEGMENTATION FAULT
+if(index < backhalfsize() )
+      return fronthalf_[index];
+    else {
+      return backhalf_[index];
+    }
+    */
+  };           //TODO
 
   void clear(){}; //TODO
 
