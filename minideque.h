@@ -127,24 +127,23 @@ public:
     }
   }
 
-  const T& operator[](size_t index) const{
-	  /* SEGMENTATION FAULT
-	  if(index < backhalfsize() )
+    const T& operator[](size_t index) const{
+    if( index < fronthalfsize() ){
       return fronthalf_[index];
-    else {
-      return backhalf_[index];
-      */
     }
-  };
+    else{
+      return backhalf_[index];
+    }
+  }
   T& operator[](size_t index){
-  /* SEGMENTATION FAULT
-if(index < backhalfsize() )
+    if( index < fronthalfsize() ){
       return fronthalf_[index];
-    else {
+    }
+    else{
       return backhalf_[index];
     }
-    */
-  };           //TODO
+  }
+          //TODO
 
   void clear(){}; //TODO
 
