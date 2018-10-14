@@ -25,22 +25,22 @@ public:
   minideque& operator=(const minideque<T>& other) = default;
   ~minideque() = default;
 
-  size_t size() const{
+  size_t size() const{  //overall size of the minideque
     return fronthalf_.size() + backhalf_.size();
   }
 
-  size_t fronthalfsize() const{
+  size_t fronthalfsize() const{ //only returns the size of fronthalf deque
     return fronthalf_.size();
   }
 
-  size_t backhalfsize() const{
+  size_t backhalfsize() const{ //only returns the backhalf of the deque
     return backhalf_.size();
   }
 
   bool empty()  const{
-    if (fronthalf_.empty() == true && backhalf_.empty() == true)
+    if (fronthalf_.empty() == true && backhalf_.empty() == true) //if both front and back half are empty, return true
 			return true;
-		else {
+		else { //if theres any elements in deque, return false
 			return false;
 		}
   }
@@ -127,10 +127,10 @@ public:
     }
   }
 
-  const T& operator[](size_t index) const;  // TODO
-  T& operator[](size_t index);              // TODO
+  const T& operator[](size_t index) const{};
+  T& operator[](size_t index){};           //TODO
 
-  void clear();  // TODO
+  void clear(){}; //TODO
 
   friend std::ostream& operator<<(std::ostream& os, const minideque<T>& dq) {    // do not change
     if (dq.empty()) { return os << "minideque is empty"; }
