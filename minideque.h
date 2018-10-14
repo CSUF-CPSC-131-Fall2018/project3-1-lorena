@@ -57,7 +57,7 @@ public:
 			backhalf_.erase(backhalf_.begin()); //erase the front of backhalf
 			split = backhalfsize() / 2;
 			for (int i = 0; i < split; i++) {
-				fronthalf_.push_back(backhalf_.begin()); //assign the back elements of backhalf to fronthalf
+				fronthalf_.push_back(backhalf_.front()); //assign the back elements of backhalf to fronthalf
 				backhalf_.erase(backhalf_.begin()); //delete the elements of backhalf that were copied
 			}
 		}
