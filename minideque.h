@@ -1,7 +1,3 @@
-//
-//  minideque.h
-//  minidequeproject
-//
 
 #ifndef minideque_h
 #define minideque_h
@@ -37,7 +33,7 @@ public:
     return backhalf_.size();
   }
 
-  bool empty()  const{
+  bool empty()  const{ //checks if the overall dequeue is empty
     return (fronthalf_.empty() == true && backhalf_.empty() == true);
   }
 
@@ -49,7 +45,7 @@ public:
 			split = backhalfsize() / 2;
 			for (int i = 0; i < split; i++) {
 				fronthalf_.insert(fronthalf_.begin(), backhalf_.front() ); //assign the back elements of backhalf to fronthalf
-				backhalf_.erase(backhalf_.begin()); //delete the elements of backhalf that were copied
+				backhalf_.erase(backhalf_.begin());                        //delete the elements of backhalf that were copied
 			}
 		}
 		else {
@@ -57,8 +53,8 @@ public:
 		}
   }
 
-  void pop_back(){
-    int split; //i'm using this to know # of elements in each vector after split
+  void pop_back(){            //basically the same as po_front but for pop_back
+    int split;                //i'm using this to know # of elements in each vector after split
     if (backhalfsize() == 0) {
 			fronthalf_.pop_back();
 			split = fronthalfsize() / 2;
@@ -77,11 +73,11 @@ public:
     fronthalf_.push_back(value); //the back of the vector is the 'front'
   }
 
-  void push_back(const T& value){
+  void push_back(const T& value){ //add an element to the back
     backhalf_.push_back(value);
   }
 
-  const T& front() const{
+  const T& front() const{ //returns the value of hte front
     if (fronthalfsize() == 0) {
 			return backhalf_.front();
 		}
@@ -90,7 +86,7 @@ public:
 		}
   }
 
-  const T& back() const{
+  const T& back() const{  //returns the value at the back of the minideque
     if (backhalfsize() == 0) {
 			return fronthalf_.front();
 		}
@@ -119,24 +115,27 @@ public:
     }
   }
 
-  const T& operator[](size_t index) const{
-    if( index < fronthalfsize() ){
-      return fronthalf_[index];
+  const T& operator[](size_t index) const{           //returns element given the location
+    if( index < fronthalfsize() ){                  //if the index is smaller than size of firsthalf then
+      return fronthalf_[fronthalfsize() - index - 1];//index is in the firsthalf
     }
     else{
-      return backhalf_[index];
+      return backhalf_[index - fronthalfsize()];  //if index is larger, its in backhalf_
     }
   }
   T& operator[](size_t index){
     if( index < fronthalfsize() ){
-      return fronthalf_[index];
+      return fronthalf_[fronthalfsize() - index - 1];
     }
     else{
-      return backhalf_[index];
+      return backhalf_[index - fronthalfsize()];
     }
   }
 
-  void clear(){}; //TODO
+  void clear(){         //clear the contents inside both vectors
+    backhalf_.clear();
+    fronthalf_.clear();
+  }
 
   friend std::ostream& operator<<(std::ostream& os, const minideque<T>& dq) {    // do not change
     if (dq.empty()) { return os << "minideque is empty"; }
