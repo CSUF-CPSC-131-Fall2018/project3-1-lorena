@@ -7,3 +7,4 @@ ONLY ONE REPOSITORY SHOULD HAVE YOUR EMAIL ADDRESS (ONE REPO PER GROUP)
 
 Group members:
 - Lorena Macias lorenamacias@csu.fullerton.edu 
+- Sheikh Siddique afrineela44@csu.fullerton.edu
